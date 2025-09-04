@@ -1,0 +1,40 @@
+package com.urbanfleet.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.util.List;
+
+@Entity
+@Setter
+@Getter
+@ToString
+public class Resident
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    @NotBlank(message = "Oops!! First name is missing")
+    private String fname;
+    @NotBlank(message = "Oops!! Last name is missing")
+    private String lname;
+    @NotBlank(message = "Oops!! Flat No. is missing")
+    private String flatno;
+    @NotBlank(message = "Oops!! Mobile No. is missing")
+    private long mobileno;
+    @NotBlank(message = "Oops!! Email is missing")
+    private String email;
+    @NotBlank(message = "Oops!! Resident Type is missing")
+    private enum RType
+    {
+        TENANT, OWNER
+    }
+    @Enumerated(EnumType.STRING)
+    private RType rtype;
+    @OneToMany(mappedBy = "resident", cascade=CascadeType.ALL)
+    private List<Vehicle> vehicallist;
+}
