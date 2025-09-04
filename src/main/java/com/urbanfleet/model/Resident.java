@@ -1,6 +1,6 @@
 package com.urbanfleet.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Setter
 @Getter
@@ -36,5 +36,6 @@ public class Resident
     @Enumerated(EnumType.STRING)
     private RType rtype;
     @OneToMany(mappedBy = "resident", cascade=CascadeType.ALL)
+    @JsonManagedReference
     private List<Vehicle> vehicallist;
 }

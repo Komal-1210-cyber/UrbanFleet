@@ -2,6 +2,7 @@ package com.urbanfleet.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -40,6 +41,8 @@ public class Vehicle
     private boolean isVehicleActive;
     @ManyToOne
     @JoinColumn(name = "resident_id")
+    @JsonManagedReference
+    @JsonIgnore
     private Resident resident;
 
 }

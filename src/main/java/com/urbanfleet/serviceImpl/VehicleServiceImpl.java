@@ -6,6 +6,8 @@ import com.urbanfleet.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class VehicleServiceImpl implements VehicleService
 {
@@ -18,4 +20,13 @@ public class VehicleServiceImpl implements VehicleService
         vehicleRepository.save(vehicle);
         return "Vehicle Saved";
     }
+
+    @Override
+    public List<Vehicle> getAllVehicleData()
+    {
+        List<Vehicle> vehicleList=vehicleRepository.findAll();
+        return vehicleList;
+    }
+
+
 }
