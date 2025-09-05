@@ -30,4 +30,10 @@ public class ResidentController
         List<Resident> residentList = residentService.getAllResidentData();
         return new ResponseEntity<>(residentList,HttpStatus.OK);
     }
+    @GetMapping("/getByName")
+    public ResponseEntity<List<Resident>> getByName(@RequestParam(required = false) String fname, @RequestParam(required = false)  String lname)
+    {
+        List<Resident> residentbynamelist = residentService.getByName(fname, lname);
+        return new  ResponseEntity<>(residentbynamelist, HttpStatus.OK);
+    }
 }

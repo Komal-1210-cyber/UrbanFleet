@@ -8,4 +8,5 @@ public interface ResidentService
 {
     String saveResident(Resident resident);
     List<Resident> getAllResidentData();
+    List<Resident> getByName(String fname, String lname);
 }
