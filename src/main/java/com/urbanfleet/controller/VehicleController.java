@@ -1,5 +1,6 @@
 package com.urbanfleet.controller;
 
+import com.urbanfleet.dto.VehicleRequest;
 import com.urbanfleet.model.Vehicle;
 import com.urbanfleet.service.VehicleService;
 import jakarta.validation.Valid;
@@ -18,10 +19,15 @@ public class VehicleController
     private VehicleService vehicleService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> addvehicle(@Valid @RequestBody Vehicle vehicle)
+    public ResponseEntity<String> addvehicle(@RequestBody VehicleRequest request)
     {
-        vehicleService.savevehicle(vehicle);
-        return new ResponseEntity<>("✅ Vehicle Saved Successfully!", HttpStatus.CREATED);
+        try {
+            vehicleService.savevehicle(request);
+            return new ResponseEntity<>("✅ Vehicle Saved Successfully!", HttpStatus.CREATED);
+        }
+        catch (IllegalArgumentException e) {
+            return new ResponseEntity<>("❌ " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
 
     }
     @GetMapping("/getAllData")

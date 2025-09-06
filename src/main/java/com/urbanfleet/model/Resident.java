@@ -29,7 +29,7 @@ public class Resident
     @NotBlank(message = "Oops!! Email is missing")
     private String email;
     @NotBlank(message = "Oops!! Resident Type is missing")
-    private enum RType
+    public enum RType
     {
         TENANT, OWNER
     }

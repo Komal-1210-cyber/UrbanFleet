@@ -1,5 +1,6 @@
 package com.urbanfleet.serviceImpl;
 
+import com.urbanfleet.dto.ResidentRequest;
 import com.urbanfleet.model.Resident;
 import com.urbanfleet.repository.ResidentRepository;
 import com.urbanfleet.service.ResidentService;
@@ -16,8 +17,16 @@ public class ResidentServiceImpl implements ResidentService
     private ResidentRepository residentRepository;
 
     @Override
-    public String saveResident(Resident resident)
+    public String saveResident(ResidentRequest request)
     {
+        Resident resident = new Resident();
+        resident.setFname(request.getFname());
+        resident.setLname(request.getLname());
+        resident.setFlatno(request.getFlatno());
+        resident.setMobileno(request.getMobileno());
+        resident.setEmail(request.getEmail());
+        resident.setRtype(Resident.RType.valueOf(request.getRtype().toUpperCase()));
+
         residentRepository.save(resident);
         return "Resident Saved";
     }

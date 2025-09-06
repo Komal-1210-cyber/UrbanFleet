@@ -28,7 +28,7 @@ public class Vehicle
     @NotBlank(message ="Oops!! Vehicle color is missing")
     private String color;
     @NotBlank(message ="Oops!! Vehicle Type is missing")
-    private enum VType
+    public enum VType
     {
         CAR, MOPED, BIKE
     }
@@ -39,10 +39,10 @@ public class Vehicle
     private LocalDateTime associationDeactivatedAt;
     @NotBlank(message ="Oops!! Vehicle Status is missing")
     private boolean isVehicleActive;
+    @NotBlank(message ="Oh Sorry!! Without Resident Vehicle can't be saved.")
     @ManyToOne
     @JoinColumn(name = "resident_id")
     @JsonManagedReference
-    @JsonIgnore
     private Resident resident;
 
 }

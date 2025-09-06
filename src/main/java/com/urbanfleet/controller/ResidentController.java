@@ -1,5 +1,6 @@
 package com.urbanfleet.controller;
 
+import com.urbanfleet.dto.ResidentRequest;
 import com.urbanfleet.model.Resident;
 import com.urbanfleet.service.ResidentService;
 import jakarta.validation.Valid;
@@ -18,10 +19,16 @@ public class ResidentController
     private ResidentService residentService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> addResident(@Valid @RequestBody Resident resident)
+    public ResponseEntity<String> addResident(@RequestBody ResidentRequest request)
     {
-        residentService.saveResident(resident);
-        return  new ResponseEntity<>("✅ Resident Saved Successfully!", HttpStatus.CREATED);
+        try {
+            residentService.saveResident(request);
+            return new ResponseEntity<>("✅ Resident Saved Successfully!", HttpStatus.CREATED);
+        }
+        catch(IllegalArgumentException e)
+        {
+            return new ResponseEntity<>("❌ " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/getAllData")
