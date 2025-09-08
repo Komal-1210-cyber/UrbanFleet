@@ -9,4 +9,5 @@ public interface VehicleService
 {
     String savevehicle(VehicleRequest request);
     List<Vehicle> getAllVehicleData();
+
 }

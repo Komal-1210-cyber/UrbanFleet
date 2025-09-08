@@ -3,6 +3,7 @@ package com.urbanfleet.model;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -24,11 +25,11 @@ public class Resident
     private String lname;
     @NotBlank(message = "Oops!! Flat No. is missing")
     private String flatno;
-    @NotBlank(message = "Oops!! Mobile No. is missing")
+    @NotNull(message = "Oops!! Mobile No. is missing")
     private long mobileno;
     @NotBlank(message = "Oops!! Email is missing")
     private String email;
-    @NotBlank(message = "Oops!! Resident Type is missing")
+    @NotNull(message = "Oops!! Resident Type is missing")
     public enum RType
     {
         TENANT, OWNER

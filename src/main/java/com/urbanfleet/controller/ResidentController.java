@@ -1,6 +1,7 @@
 package com.urbanfleet.controller;
 
 import com.urbanfleet.dto.ResidentRequest;
+import com.urbanfleet.dto.ResidentResponse;
 import com.urbanfleet.model.Resident;
 import com.urbanfleet.service.ResidentService;
 import jakarta.validation.Valid;
@@ -42,5 +43,12 @@ public class ResidentController
     {
         List<Resident> residentbynamelist = residentService.getByName(fname, lname);
         return new  ResponseEntity<>(residentbynamelist, HttpStatus.OK);
+    }
+
+    @GetMapping("/getByRegNum/{registrationnumber}")
+    public ResponseEntity<ResidentResponse> getByregistrationNumber(@PathVariable String registrationnumber)
+    {
+        ResidentResponse residentList = residentService.getByregistrationNumber(registrationnumber);
+        return  new ResponseEntity<>(residentList, HttpStatus.OK);
     }
 }

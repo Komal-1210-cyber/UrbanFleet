@@ -11,4 +11,5 @@ public interface ResidentRepository extends JpaRepository<Resident, Integer>
     List<Resident> findByFnameIgnoreCaseOrLnameIgnoreCase( String fname, String lname);
     List<Resident> findByFnameIgnoreCase(String Fname);
     List<Resident> findByLnameIgnoreCase(String Lname);
+
 }

@@ -1,10 +1,11 @@
 package com.urbanfleet.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,6 +23,7 @@ public class Vehicle
     @JsonIgnore
     private long id;
     @NotBlank(message ="Oops!! Registration No. is missing")
+    @Size(max = 10, min = 10)
     private String registrationNumber;
     @NotBlank(message ="Oops!! Vehicle Name is missing")
     private String vName;
