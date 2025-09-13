@@ -4,8 +4,10 @@ import com.urbanfleet.dto.ResidentRequest;
 import com.urbanfleet.dto.ResidentResponse;
 import com.urbanfleet.model.Resident;
 import com.urbanfleet.model.Vehicle;
+import com.urbanfleet.model.Visitor;
 import com.urbanfleet.repository.ResidentRepository;
 import com.urbanfleet.repository.VehicleRepository;
+import com.urbanfleet.repository.VisitorRepository;
 import com.urbanfleet.service.ResidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class ResidentServiceImpl implements ResidentService
 
     @Autowired
     private VehicleRepository vehicleRepository;
+
+    @Autowired
+    private VisitorRepository visitorRepository;
 
     @Override
     public String saveResident(ResidentRequest request)
@@ -79,8 +84,18 @@ public class ResidentServiceImpl implements ResidentService
         Resident resident = vehicleRepository.findByregistrationNumber(registrationnumber)
                 .map(Vehicle::getResident)
                 .orElseThrow(() -> new IllegalArgumentException("Oops no Resident Found!!"));
-        return new ResidentResponse((resident));
+        return new ResidentResponse(resident);
     }
+
+//    @Override
+//    public ResidentResponse getByvRNum(String vRnum)
+//    {
+//        Resident resident = visitorRepository.findByvRNum(vRnum)
+//                .map(Visitor::getResident)
+//                .orElseThrow(()-> new IllegalArgumentException("Oops!! No Resident Found"));
+//        return new ResidentResponse(resident);
+//    }
+
 
 
 }

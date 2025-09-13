@@ -1,6 +1,7 @@
 package com.urbanfleet.serviceImpl;
 
 import com.urbanfleet.dto.VehicleRequest;
+import com.urbanfleet.dto.VehicleResponse;
 import com.urbanfleet.model.Vehicle;
 import com.urbanfleet.repository.ResidentRepository;
 import com.urbanfleet.repository.VehicleRepository;
@@ -40,10 +41,10 @@ public class VehicleServiceImpl implements VehicleService
     }
 
     @Override
-    public List<Vehicle> getAllVehicleData()
+    public List<VehicleResponse> getAllVehicleData()
     {
-        List<Vehicle> vehicleList=vehicleRepository.findAll();
-        return vehicleList;
+        return vehicleRepository.findAll().stream().map(VehicleResponse::new).toList();
+
     }
 
 

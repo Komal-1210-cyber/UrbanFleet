@@ -1,9 +1,10 @@
 package com.urbanfleet.controller;
 
 import com.urbanfleet.dto.VehicleRequest;
-import com.urbanfleet.model.Vehicle;
+import com.urbanfleet.dto.VehicleResponse;
+
 import com.urbanfleet.service.VehicleService;
-import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,9 +32,9 @@ public class VehicleController
 
     }
     @GetMapping("/getAllData")
-    public ResponseEntity<List<Vehicle>> getAllData()
+    public ResponseEntity<List<VehicleResponse>> getAllData()
     {
-        List<Vehicle> vehicleList=vehicleService.getAllVehicleData();
+        List<VehicleResponse> vehicleList=vehicleService.getAllVehicleData();
         return  new ResponseEntity<>(vehicleList,HttpStatus.OK);
 
     }

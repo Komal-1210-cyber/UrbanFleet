@@ -1,5 +1,8 @@
 package com.urbanfleet.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.urbanfleet.dto.VisitorResponse;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,16 +15,17 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 @Entity
-public class Visitor
-{
+public class Visitor extends VisitorResponse {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private int id;
     @NotBlank(message ="Hey visitor, I need your name!")
     private String visitorName;
     @NotBlank(message = "Please tell me your vehicle name.")
     private String vehicleName;
     @NotBlank(message =" I need your vehicle registration number.")
-    private String VehicleRegistationNumber;
+    private String vRNum;
     @NotBlank(message="What’s the purpose of your visit?")
     private String visitPurpose;
     private LocalDateTime timein;
@@ -38,8 +42,10 @@ public class Visitor
         CLEANER
     }
     @Enumerated(EnumType.STRING)
+    @JsonIgnore
     private VisitorType visitortype;
     @ManyToOne
     @JoinColumn(name="resident_id")
+    @JsonManagedReference
     private Resident resident;
 }

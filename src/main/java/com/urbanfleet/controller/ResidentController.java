@@ -45,10 +45,18 @@ public class ResidentController
         return new  ResponseEntity<>(residentbynamelist, HttpStatus.OK);
     }
 
-    @GetMapping("/getByRegNum/{registrationnumber}")
+    @GetMapping("/getByVehicleRegNum/{registrationnumber}")
     public ResponseEntity<ResidentResponse> getByregistrationNumber(@PathVariable String registrationnumber)
     {
         ResidentResponse residentList = residentService.getByregistrationNumber(registrationnumber);
-        return  new ResponseEntity<>(residentList, HttpStatus.OK);
+        return new ResponseEntity<>(residentList, HttpStatus.OK);
     }
+
+
+//    @GetMapping("/getByVisitorVehicleRegNum/{vRnum}")
+//    public ResponseEntity<ResidentResponse> getByvRNum(@PathVariable String vRnum)
+//    {
+//        ResidentResponse residentResponse = residentService.getByvRNum(vRnum);
+//        return new ResponseEntity<>(residentResponse, HttpStatus.OK);
+//    }
 }

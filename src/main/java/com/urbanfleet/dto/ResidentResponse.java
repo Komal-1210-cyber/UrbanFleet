@@ -26,4 +26,6 @@ public class ResidentResponse
         this.email = resident.getEmail();
     }
 
+    public ResidentResponse(ResidentResponse residentResponse) {
+    }
 }

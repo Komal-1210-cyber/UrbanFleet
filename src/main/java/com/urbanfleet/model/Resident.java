@@ -38,5 +38,6 @@ public class Resident
     private RType rtype;
     @OneToMany(mappedBy = "resident", cascade=CascadeType.ALL)
     @JsonManagedReference
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Vehicle> vehicallist;
 }

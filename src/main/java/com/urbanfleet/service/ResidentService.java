@@ -12,4 +12,8 @@ public interface ResidentService
     List<Resident> getAllResidentData();
     List<Resident> getByName(String fname, String lname);
     ResidentResponse getByregistrationNumber(String registrationnumber);
+
+//    ResidentResponse getByvRNum(String vRnum);
+
+
 }
